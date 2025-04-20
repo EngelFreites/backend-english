@@ -4,9 +4,9 @@ services:
     env: node
     buildCommand: |
       npm cache clean --force
-      npm install --legacy-peer-deps
-      NODE_OPTIONS='--max-old-space-size=1024' npm run build
-    startCommand: NODE_OPTIONS='--max-old-space-size=1024' npm start
+      npm install --legacy-peer-deps --no-audit --no-fund
+      NODE_OPTIONS='--max-old-space-size=2048' npm run build
+    startCommand: NODE_OPTIONS='--max-old-space-size=2048' npm start
     envVars:
       - key: NODE_ENV
         value: production

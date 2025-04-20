@@ -4,24 +4,24 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
-    "build": "NODE_OPTIONS='--max-old-space-size=1024' strapi build",
+    "build": "NODE_OPTIONS='--max-old-space-size=2048' strapi build",
     "console": "strapi console",
     "deploy": "strapi deploy",
     "dev": "strapi develop",
     "develop": "strapi develop",
-    "start": "NODE_OPTIONS='--max-old-space-size=1024' strapi start",
+    "start": "NODE_OPTIONS='--max-old-space-size=2048' strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi/plugin-users-permissions": "5.12.4",
-    "@strapi/strapi": "5.12.4",
+    "@strapi/plugin-users-permissions": "4.12.2",
+    "@strapi/strapi": "4.12.2",
     "pg": "^8.14.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {},
   "engines": {
