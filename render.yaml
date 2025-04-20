@@ -2,7 +2,10 @@ services:
   - type: web
     name: strapi-backend
     env: node
-    buildCommand: NODE_OPTIONS='--max-old-space-size=256' npm install && npm run build
+    buildCommand: |
+      npm cache clean --force
+      npm install --production
+      npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -21,3 +24,7 @@ services:
     scaling:
       minInstances: 1
       maxInstances: 1
+    disk:
+      name: strapi-disk
+      mountPath: /opt/render/project/src/.tmp
+      sizeGB: 1
