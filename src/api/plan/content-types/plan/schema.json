@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plans",
+  "info": {
+    "singularName": "plan",
+    "pluralName": "plans",
+    "displayName": "plan"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true,
+      "minLength": 3
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "billing_period": {
+      "type": "string"
+    },
+    "Include": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}
