@@ -9,7 +9,9 @@ services:
       npm install --legacy-peer-deps --no-audit --no-fund --prefer-offline
       npm rebuild
       NODE_ENV=development NODE_OPTIONS='--max-old-space-size=2048' npm run build
-    startCommand: NODE_OPTIONS='--max-old-space-size=2048' npm start
+    startCommand: |
+      export DATABASE_URL=$(echo $DATABASE_URL | sed 's/postgres:/postgresql:/')
+      NODE_OPTIONS='--max-old-space-size=2048' npm start
     envVars:
       - key: NODE_ENV
         value: production
