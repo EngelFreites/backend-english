@@ -2,7 +2,7 @@ services:
   - type: web
     name: strapi-backend
     env: node
-    buildCommand: npm install && npm run build
+    buildCommand: NODE_OPTIONS='--max-old-space-size=256' npm install && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -13,5 +13,11 @@ services:
         fromDatabase:
           name: strapi-db
           property: connectionString
+      - key: STRAPI_API_TOKEN
+        sync: false
     healthCheckPath: /_health
     autoDeploy: true
+    plan: free
+    scaling:
+      minInstances: 1
+      maxInstances: 1
