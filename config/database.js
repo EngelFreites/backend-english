@@ -1,10 +1,9 @@
-const path = require("path");
+const parse = require("pg-connection-string").parse;
 
 module.exports = ({ env }) => {
   const isProduction = env("NODE_ENV") === "production";
   const connectionString = env("DATABASE_URL");
 
-  // Configuración base
   const baseConfig = {
     client: "postgres",
     pool: {
@@ -14,23 +13,28 @@ module.exports = ({ env }) => {
     acquireConnectionTimeout: env.int("DATABASE_CONNECTION_TIMEOUT", 60000),
   };
 
-  // Si estamos en producción y no hay URL, lanzamos error
   if (isProduction && !connectionString) {
     throw new Error("DATABASE_URL is required in production");
   }
 
-  // Si hay URL de conexión, la usamos
   if (connectionString) {
+    const parsed = parse(connectionString);
     return {
       connection: {
         ...baseConfig,
-        connection: connectionString,
-        ssl: env.bool("DATABASE_SSL", false),
+        connection: {
+          host: parsed.host,
+          port: parsed.port,
+          database: parsed.database,
+          user: parsed.user,
+          password: parsed.password,
+          ssl: env.bool("DATABASE_SSL", false),
+        },
       },
     };
   }
 
-  // Configuración local para desarrollo/build
+  // Config local
   return {
     connection: {
       ...baseConfig,
