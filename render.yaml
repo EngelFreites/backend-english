@@ -4,6 +4,7 @@ services:
     env: node
     buildCommand: |
       npm cache clean --force
+      rm -rf node_modules package-lock.json
       npm install --legacy-peer-deps --no-audit --no-fund
       NODE_OPTIONS='--max-old-space-size=2048' npm run build
     startCommand: NODE_OPTIONS='--max-old-space-size=2048' npm start
