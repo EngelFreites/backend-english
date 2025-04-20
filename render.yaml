@@ -4,9 +4,9 @@ services:
     env: node
     buildCommand: |
       npm cache clean --force
-      npm install
-      npm run build
-    startCommand: npm start
+      npm install --legacy-peer-deps
+      NODE_OPTIONS='--max-old-space-size=1024' npm run build
+    startCommand: NODE_OPTIONS='--max-old-space-size=1024' npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -20,7 +20,7 @@ services:
         sync: false
     healthCheckPath: /_health
     autoDeploy: true
-    plan: free
+    plan: starter
     scaling:
       minInstances: 1
       maxInstances: 1
