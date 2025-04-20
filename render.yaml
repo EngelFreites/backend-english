@@ -19,6 +19,26 @@ services:
         fromDatabase:
           name: strapi-db
           property: connectionString
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: strapi-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: strapi-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: strapi-db
+          property: database
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: strapi-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: strapi-db
+          property: password
       - key: DATABASE_SSL
         value: "false"
       - key: STRAPI_API_TOKEN
